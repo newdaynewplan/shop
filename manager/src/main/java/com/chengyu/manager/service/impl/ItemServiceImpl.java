@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import javax.jms.Topic;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -46,8 +48,8 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemMapper itemMapper;
 	@Autowired
 	private TbItemDescMapper itemDescMapper;
-//	@Autowired
-//	private JmsTemplate jmsTemplate;
+    @Autowired
+    private JmsMessagingTemplate jmsTemplate;
 	@Autowired
 	private StringRedisTemplate jedisClient;
 	@Value("${REDIS_ITEM_PRE}")
@@ -55,8 +57,8 @@ public class ItemServiceImpl implements ItemService {
 	@Value("${ITEM_CACHE_EXPIRE}")
 	private Integer ITEM_CACHE_EXPIRE;
 	// 先根据id找，后根据类型找
-//	@Resource
-//	private Destination topicDestination;
+	@Resource
+	private Topic topicDestination;
 
 	@Override
 	public TbItem getItemById(long itemId) {
@@ -138,6 +140,7 @@ public class ItemServiceImpl implements ItemService {
 		itemDescMapper.insert(itemDesc);
 		// 7、E3Result.ok()
 		//发送一个商品添加消息
+        jmsTemplate.convertAndSend(topicDestination,itemId);
 //		jmsTemplate.send(topicDestination, new MessageCreator() {
 //
 //			@Override

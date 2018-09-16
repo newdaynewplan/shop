@@ -10,6 +10,8 @@ spring:
   redis:
     port: 6379
     host: 192.168.25.133
+  activemq:
+    broker-url: tcp://192.168.25.133:61616
 
 mybatis:
   type-aliases-package: com.chengyu.manager.pojo
