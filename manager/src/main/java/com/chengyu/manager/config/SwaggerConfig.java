@@ -1,4 +1,4 @@
-package com.chengyu.manager;
+package com.chengyu.manager.config;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Created by zl on 2015/8/27.
+ *  如果使用了 thymeleaf 模板，不能使用swagger， 用了Controller注解。
  */
 @Configuration
 @EnableSwagger2
@@ -24,7 +25,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.javalizi.blog.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.chengyu.manager.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
