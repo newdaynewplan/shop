@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "REDIS_ITEM_PRE",
+      "type": "java.lang.String",
+      "description": "Description for REDIS_ITEM_PRE."
+  }
+] }
