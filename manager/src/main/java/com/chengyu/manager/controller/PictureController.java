@@ -18,7 +18,7 @@ public class PictureController {
     @Value("${IMAGE_SERVER_URL}")
     private String IMAGE_SERVER_URL;
 
-    @RequestMapping(value = "/pic/upload",method = RequestMethod.POST)
+    @RequestMapping(value = "/pic/upload")
     public String fileUpload(MultipartFile uploadFile) {
         try {
             //1、取文件的扩展名
