@@ -9,8 +9,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>manager</module>
+        <module>eureka</module>
         <module>common</module>
+        <module>manager</module>
         <module>parent</module>
         <module>content</module>
         <module>portal</module>
