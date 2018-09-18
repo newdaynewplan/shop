@@ -27,6 +27,8 @@ public class ManagerApplication {
 	public Topic topicDestination(){
 		return new ActiveMQTopic("itemAddTopic");
 	}
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(ManagerApplication.class, args);
 	}
