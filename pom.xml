@@ -13,6 +13,7 @@
         <module>common</module>
         <module>parent</module>
         <module>content</module>
+        <module>portal</module>
         <module>fastdfs_client</module>
     </modules>
 
