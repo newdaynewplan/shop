@@ -65,14 +65,15 @@
 <div class="slide_show" id="slide_show">
 	<div class="indexW">
       <div id="index_slide" class="slide_wrap">
-		<ol>
-			<!--<c:forEach items="${ad1List}" var="node" varStatus="status">-->
+		<ol th:each="node : ${ad1List}">
+			<!--<c:forEach items="" var="node" varStatus="status">-->
 			<!--<li>-->
-			  <!--<a name="sfbest_hp_hp_focus_${status.index }" class="fore_pic trackref" href="${node.url }" target="_blank"> -->
-				<!--<img id="lunbo_1" alt="${node.title }"	src="${node.pic }">-->
+			  <!--<a name="sfbest_hp_hp_focus_${status.index }" class="fore_pic trackref" th:href="@{node.url }" target="_blank">-->
+				<!--<img id="lunbo_1" th:alt="${node.title }"	th:src="@{/images/html/aa472cb9f9624d22d1fcfd1c4dffbe42.jpg }">-->
 			  <!--</a>-->
 			<!--</li>-->
 			<!--</c:forEach>-->
+
 			 <li>
 			  <a name="sfbest_hp_hp_focus_1" class="fore_pic trackref" href="/html/activity/1471934470.html" target="_blank">
 				<img id="lunbo_1" alt="8.30-9.5 月饼"	src="/images/html/aa472cb9f9624d22d1fcfd1c4dffbe42.jpg">
@@ -132,7 +133,7 @@
           </a>
 		   	  </div>   
  	</div>
-      <ul class="none" id="lunboNum">
+      <ul class="none" id="lunboNum" >
       			<!--<c:forEach items="${ad1List }" varStatus="status">-->
       			<!--<li class="<c:if test="${status.index==0 }">cur</c:if>">${status.index+1 }</li>-->
       			<!--</c:forEach>-->
