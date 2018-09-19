@@ -1,6 +1,4 @@
 spring:
-   application:
-       name: manager
 #  datasource:
 #    url: jdbc:mysql://localhost:3306/e3mall?useUnicode=true&characterEncoding=gbk&zeroDateTimeBehavior=convertToNull
 #    username: root
@@ -12,6 +10,8 @@ spring:
   redis:
     port: 6379
     host: 192.168.25.133
+  application:
+    name: portal
 #  activemq:
 #    broker-url: tcp://192.168.25.133:61616
 
@@ -26,10 +26,10 @@ spring:
 #  params:
 #     count: countSql
 
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8082/eureka/
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
 
 server:
   port: 8081

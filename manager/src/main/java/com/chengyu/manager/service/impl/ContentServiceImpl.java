@@ -1,6 +1,5 @@
 package com.chengyu.manager.service.impl;
 
-import com.chengyu.common.jedis.JedisClient;
 import com.chengyu.common.utils.E3Result;
 import com.chengyu.common.utils.JsonUtils;
 import com.chengyu.manager.dao.TbContentMapper;
@@ -10,6 +9,8 @@ import com.chengyu.manager.service.ContentService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -28,7 +29,7 @@ public class ContentServiceImpl implements ContentService {
 	@Autowired
 	private TbContentMapper contentMapper;
 	@Autowired
-	private JedisClient jedisClient;
+	private StringRedisTemplate jedisClient;
 
 	@Value("${CONTENT_LIST}")
 	private String CONTENT_LIST;
@@ -41,7 +42,8 @@ public class ContentServiceImpl implements ContentService {
 		//插入到数据库
 		contentMapper.insert(content);
 		//缓存同步,删除缓存中对应的数据。
-		jedisClient.hdel(CONTENT_LIST, content.getCategoryId().toString());
+		HashOperations<String, Object, Object> forHash = jedisClient.opsForHash();
+		forHash.delete(CONTENT_LIST, content.getCategoryId().toString());
 		return E3Result.ok();
 	}
 
@@ -56,9 +58,10 @@ public class ContentServiceImpl implements ContentService {
 	@Override
 	public List<TbContent> getContentListByCid(long cid) {
 		//查询缓存
+		HashOperations<String, Object, Object> forHash = jedisClient.opsForHash();
 		try {
 			//如果缓存中有直接响应结果
-			String json = jedisClient.hget(CONTENT_LIST, cid + "");
+			String json = (String)forHash.get(CONTENT_LIST, cid + "");
 			if (StringUtils.isNotBlank(json)) {
 				List<TbContent> list = JsonUtils.jsonToList(json, TbContent.class);
 				return list;
@@ -77,7 +80,7 @@ public class ContentServiceImpl implements ContentService {
 
 		//把结果添加到缓存
 		try {
-			jedisClient.hset(CONTENT_LIST, cid + "", JsonUtils.objectToJson(list));
+			forHash.putIfAbsent(CONTENT_LIST, cid + "", JsonUtils.objectToJson(list));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
