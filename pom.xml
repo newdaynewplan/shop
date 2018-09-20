@@ -19,10 +19,10 @@
         <module>eureka</module>
         <module>common</module>
         <module>manager</module>
-        <module>parent</module>
+        <!--<module>parent</module>-->
         <module>portal</module>
         <module>search</module>
-        <module>fastdfs_client</module>
+        <!--<module>fastdfs_client</module>-->
     </modules>
 
     <properties>

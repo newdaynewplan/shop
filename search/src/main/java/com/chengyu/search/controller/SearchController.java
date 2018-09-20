@@ -32,7 +32,7 @@ public class SearchController {
 	@Value("${SEARCH_RESULT_ROWS}")
 	private Integer SEARCH_RESULT_ROWS;
 
-	@RequestMapping("/search")
+	@RequestMapping("/search.html")
 	public String searchItemList(String keyword,
                                  @RequestParam(defaultValue="1") Integer page, Model model) throws Exception {
 		keyword = new String(keyword.getBytes("iso-8859-1"), "utf-8");
