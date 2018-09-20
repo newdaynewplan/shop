@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: manager
   datasource:
     url: jdbc:mysql://localhost:3306/e3mall?useUnicode=true&characterEncoding=gbk&zeroDateTimeBehavior=convertToNull
     username: root
@@ -12,11 +10,16 @@ spring:
   redis:
     port: 6379
     host: 192.168.25.133
+  application:
+    name: search
+  data:
+    solr:
+      host: http://192.168.25.133:8080/solr/collection1
   activemq:
     broker-url: tcp://192.168.25.133:61616
 
 mybatis:
-  type-aliases-package: com.chengyu.manager.pojo
+  type-aliases-package: com.chengyu.common.pojo
   mapper-locations: classpath:mapper/*.xml
 
 pagehelper:
@@ -32,5 +35,5 @@ eureka:
       defaultZone: http://localhost:8080/eureka/
 
 server:
-  port: 8081
+  port: 8083
 

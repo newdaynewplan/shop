@@ -50,15 +50,15 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemDescMapper itemDescMapper;
     @Autowired
     private JmsMessagingTemplate jmsTemplate;
+	// 先根据id找，后根据类型找
+	@Resource
+	private Topic topicDestination;
 	@Autowired
 	private StringRedisTemplate jedisClient;
 	@Value("${REDIS_ITEM_PRE}")
 	private String REDIS_ITEM_PRE;
 	@Value("${ITEM_CACHE_EXPIRE}")
 	private Integer ITEM_CACHE_EXPIRE;
-	// 先根据id找，后根据类型找
-	@Resource
-	private Topic topicDestination;
 
 	@Override
 	public TbItem getItemById(long itemId) {
