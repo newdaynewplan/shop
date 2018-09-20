@@ -1,6 +1,9 @@
 package com.chengyu.search.controller;
 
+import com.chengyu.common.pojo.SearchItem;
 import com.chengyu.common.pojo.SearchResult;
+import com.chengyu.common.utils.E3Result;
+import com.chengyu.search.service.SearchItemService;
 import com.chengyu.search.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 商品搜索Controller
@@ -21,6 +25,9 @@ public class SearchController {
 	
 	@Autowired
 	private SearchService searchService;
+
+	@Autowired
+	private SearchItemService searchItemService;
 	
 	@Value("${SEARCH_RESULT_ROWS}")
 	private Integer SEARCH_RESULT_ROWS;
@@ -41,5 +48,12 @@ public class SearchController {
 //		int a = 1/0;
 		//返回逻辑视图
 		return "search";
+	}
+
+	@RequestMapping("/index/item/import")
+	@ResponseBody
+	public E3Result importAllItems() {
+		E3Result e3Result = searchItemService.importAllItems();
+		return e3Result;
 	}
 }
