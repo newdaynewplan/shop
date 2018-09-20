@@ -3,6 +3,7 @@ package com.chengyu.manager.controller;
 import com.chengyu.common.pojo.EasyUIDataGridResult;
 import com.chengyu.common.utils.E3Result;
 import com.chengyu.manager.pojo.TbItem;
+import com.chengyu.manager.pojo.TbItemDesc;
 import com.chengyu.manager.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,15 @@ public class ItemController {
 	private ItemService itemService;
 
 	@RequestMapping(value = "/item/{itemId}", method = RequestMethod.GET)
-	public TbItem getItemById(@PathVariable Long itemId) {
+	public TbItem getItemById(@PathVariable(value = "itemId") Long itemId) {
 		TbItem tbItem = itemService.getItemById(itemId);
 		return tbItem;
+	}
+
+	@RequestMapping(value = "/itemDesc/{itemId}", method = RequestMethod.GET)
+	public TbItemDesc getItemDescById(@PathVariable(value = "itemId") Long itemId) {
+		TbItemDesc itemDesc = itemService.getItemDescById(itemId);
+		return itemDesc;
 	}
 
 	@RequestMapping(value = "/item/list", method = RequestMethod.GET)
