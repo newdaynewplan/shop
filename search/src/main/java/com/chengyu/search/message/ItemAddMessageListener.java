@@ -5,13 +5,9 @@ import com.chengyu.search.dao.ItemMapper;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
 
 /**
  * 监听商品添加消息，接收消息后，将对应的商品信息同步到索引库
@@ -20,20 +16,18 @@ import javax.jms.Topic;
  * <p>Company: www.itcast.cn</p> 
  * @version 1.0
  */
-public class ItemAddMessageListener implements MessageListener {
+@Component
+public class ItemAddMessageListener{
 
 	@Autowired
 	private ItemMapper itemMapper;
 	@Autowired
 	private SolrClient solrServer;
 
-	@Override
-	public void onMessage(Message message) {
+	@JmsListener(destination = "itemAddTopic",containerFactory = "jmsListenerContainerTopic")
+	public void onMessage(String message) {
 		try {
-			//从消息中取商品id
-			TextMessage textMessage = (TextMessage) message;
-			String text = textMessage.getText();
-			Long itemId = new Long(text);
+			Long itemId = new Long(message);
 			//等待事务提交
 			Thread.sleep(1000);
 			//根据商品id查询商品信息
