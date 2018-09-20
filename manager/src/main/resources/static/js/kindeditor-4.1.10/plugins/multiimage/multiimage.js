@@ -145,13 +145,13 @@ K.extend(KSWFUpload, {
 	},
 	removeFiles : function() {
 		var self = this;
-		K('.ke-item', self.bodyDiv).each(function() {
+		K('.ke-cart', self.bodyDiv).each(function() {
 			self.removeFile(K(this).attr('data-id'));
 		});
 	},
 	appendFile : function(file) {
 		var self = this;
-		var itemDiv = K('<div class="ke-inline-block ke-item" data-id="' + file.id + '"></div>');
+		var itemDiv = K('<div class="ke-inline-block ke-cart" data-id="' + file.id + '"></div>');
 		self.bodyDiv.append(itemDiv);
 		var photoDiv = K('<div class="ke-inline-block ke-photo"></div>')
 			.mouseover(function(e) {

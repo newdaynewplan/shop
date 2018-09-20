@@ -87,11 +87,11 @@ $(function(){
 			});
 		}
 		$("#public_cate").addClass("hover");
-		$("#booksort").find(".item").removeClass("hover");
+		$("#booksort").find(".cart").removeClass("hover");
 	});
 	$("#public_cate").live("mouseleave",function(){
 		$("#public_cate").removeClass("hover");
-		$("#booksort").find(".item").removeClass("hover");
+		$("#booksort").find(".cart").removeClass("hover");
 	});
 	
 	
@@ -134,10 +134,10 @@ $(function(){
  //$("#login").after("<li id='qiyeLogin'><a href='http://www.sfme.me/login.jhtml' target='_blank' rel='nofollow'>员工福利</a></li>");
 });
 
-$("#booksort .item").live("mouseenter",function(){
+$("#booksort .cart").live("mouseenter",function(){
     $(this).addClass("hover");
 });
-$("#booksort .item").live("mouseleave",function(){
+$("#booksort .cart").live("mouseleave",function(){
 	$(this).removeClass("hover");
 });
 

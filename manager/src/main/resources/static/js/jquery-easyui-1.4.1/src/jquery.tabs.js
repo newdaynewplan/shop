@@ -479,7 +479,7 @@
 //		setScrollers(container);
 		setSize(container);
 		
-		// remove the select history item
+		// remove the select history cart
 		for(var i=0; i<selectHis.length; i++){
 			if (selectHis[i] == title){
 				selectHis.splice(i, 1);

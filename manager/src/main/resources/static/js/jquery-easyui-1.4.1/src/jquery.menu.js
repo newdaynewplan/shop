@@ -70,7 +70,7 @@
 						item[0].itemName = itemOpts.name || '';
 						item[0].itemHref = itemOpts.href || '';
 						
-						var text = item.addClass('menu-item').html();
+						var text = item.addClass('menu-cart').html();
 						item.empty().append($('<div class="menu-text"></div>').html(text));
 						if (itemOpts.iconCls){
 							$('<div class="menu-icon"></div>').addClass(itemOpts.iconCls).appendTo(item);
@@ -112,7 +112,7 @@
 				if (width < $(this)._outerWidth()){
 					width = $(this)._outerWidth();
 				}
-				$(this).closest('div.menu-item')._outerHeight($(this)._outerHeight()+2);
+				$(this).closest('div.menu-cart')._outerHeight($(this)._outerHeight()+2);
 			});
 			width += 40;
 		}
@@ -171,10 +171,10 @@
 	}
 	
 	/**
-	 * bind menu item event
+	 * bind menu cart event
 	 */
 	function bindMenuItemEvent(target, item){
-		if (!item.hasClass('menu-item')){return}
+		if (!item.hasClass('menu-cart')){return}
 		item.unbind('.menu');
 		item.bind('click.menu', function(){
 			if ($(this).hasClass('menu-item-disabled')){
@@ -248,7 +248,7 @@
 	 * left: the left position to display
 	 * top: the top position to display
 	 * menu: the menu to display, if not defined, the 'target menu' is used
-	 * parent: the parent menu item to align to
+	 * parent: the parent menu cart to align to
 	 * alignTo: the element object to align to
 	 */
 	function showMenu(target, param){
@@ -275,7 +275,7 @@
 			if (left < 0){left = 0;}
 			top = _fixTop(top, opts.alignTo);
 		} else {
-			var parent = param.parent;	// the parent menu item
+			var parent = param.parent;	// the parent menu cart
 			left = parent.offset().left + parent.outerWidth() - 2;
 			if (left + menu.outerWidth() + 5 > $(window)._outerWidth() + $(document).scrollLeft()){
 				left = parent.offset().left - menu.outerWidth() + 2;
@@ -319,7 +319,7 @@
 		if (!menu) return;
 		
 		hideit(menu);
-		menu.find('div.menu-item').each(function(){
+		menu.find('div.menu-cart').each(function(){
 			if (this.submenu){
 				hideMenu(this.submenu);
 			}
@@ -339,7 +339,7 @@
 		var result = null;
 		var tmp = $('<div></div>');
 		function find(menu){
-			menu.children('div.menu-item').each(function(){
+			menu.children('div.menu-cart').each(function(){
 				var item = $(target).menu('getItem', this);
 				var s = tmp.empty().html(item.text).text();
 				if (text == $.trim(s)) {
@@ -356,16 +356,16 @@
 	
 	function setDisabled(target, itemEl, disabled){
 		var t = $(itemEl);
-		if (!t.hasClass('menu-item')){return}
+		if (!t.hasClass('menu-cart')){return}
 		
 		if (disabled){
-			t.addClass('menu-item-disabled');
+			t.addClass('menu-cart-disabled');
 			if (itemEl.onclick){
 				itemEl.onclick1 = itemEl.onclick;
 				itemEl.onclick = null;
 			}
 		} else {
-			t.removeClass('menu-item-disabled');
+			t.removeClass('menu-cart-disabled');
 			if (itemEl.onclick1){
 				itemEl.onclick = itemEl.onclick1;
 				itemEl.onclick1 = null;
@@ -387,7 +387,7 @@
 		if (param.separator){
 			var item = $('<div class="menu-sep"></div>').appendTo(menu);
 		} else {
-			var item = $('<div class="menu-item"></div>').appendTo(menu);
+			var item = $('<div class="menu-cart"></div>').appendTo(menu);
 			$('<div class="menu-text"></div>').html(param.text).appendTo(item);
 		}
 		if (param.iconCls) $('<div class="menu-icon"></div>').addClass(param.iconCls).appendTo(item);
@@ -412,7 +412,7 @@
 	function removeItem(target, itemEl){
 		function removeit(el){
 			if (el.submenu){
-				el.submenu.children('div.menu-item').each(function(){
+				el.submenu.children('div.menu-cart').each(function(){
 					removeit(this);
 				});
 				var shadow = el.submenu[0].shadow;
@@ -437,7 +437,7 @@
 	}
 	
 	function destroyMenu(target){
-		$(target).children('div.menu-item').each(function(){
+		$(target).children('div.menu-cart').each(function(){
 			removeItem(target, this);
 		});
 		if (target.shadow) target.shadow.remove();
@@ -487,9 +487,9 @@
 			});
 		},
 		/**
-		 * set the menu item text
+		 * set the menu cart text
 		 * param: {
-		 * 	target: DOM object, indicate the menu item
+		 * 	target: DOM object, indicate the menu cart
 		 * 	text: string, the new text
 		 * }
 		 */
@@ -501,8 +501,8 @@
 		/**
 		 * set the menu icon class
 		 * param: {
-		 * 	target: DOM object, indicate the menu item
-		 * 	iconCls: the menu item icon class
+		 * 	target: DOM object, indicate the menu cart
+		 * 	iconCls: the menu cart icon class
 		 * }
 		 */
 		setIcon: function(jq, param){
@@ -514,14 +514,14 @@
 			});
 		},
 		/**
-		 * get the menu item data that contains the following property:
+		 * get the menu cart data that contains the following property:
 		 * {
-		 * 	target: DOM object, the menu item
+		 * 	target: DOM object, the menu cart
 		 *  id: the menu id
-		 * 	text: the menu item text
+		 * 	text: the menu cart text
 		 * 	iconCls: the icon class
 		 *  href: a remote address to redirect to
-		 *  onclick: a function to be called when the item is clicked
+		 *  onclick: a function to be called when the cart is clicked
 		 * }
 		 */
 		getItem: function(jq, itemEl){
@@ -530,7 +530,7 @@
 				target: itemEl,
 				id: t.attr('id'),
 				text: $.trim(t.children('div.menu-text').html()),
-				disabled: t.hasClass('menu-item-disabled'),
+				disabled: t.hasClass('menu-cart-disabled'),
 //				href: t.attr('href'),
 //				name: t.attr('name'),
 				name: itemEl.itemName,
@@ -554,9 +554,9 @@
 			return findItem(jq[0], text);
 		},
 		/**
-		 * append menu item, the param contains following properties:
+		 * append menu cart, the param contains following properties:
 		 * parent,id,text,iconCls,href,onclick
-		 * when parent property is assigned, append menu item to it
+		 * when parent property is assigned, append menu cart to it
 		 */
 		appendItem: function(jq, param){
 			return jq.each(function(){

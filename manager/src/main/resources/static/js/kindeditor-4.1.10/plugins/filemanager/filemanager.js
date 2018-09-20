@@ -157,7 +157,7 @@ KindEditor.plugin('filemanager', function(K) {
 			var fileList = result.file_list;
 			for (var i = 0, len = fileList.length; i < len; i++) {
 				var data = fileList[i],
-					div = K('<div class="ke-inline-block ke-item"></div>');
+					div = K('<div class="ke-inline-block ke-cart"></div>');
 				bodyDiv.append(div);
 				var photoDiv = K('<div class="ke-inline-block ke-photo"></div>')
 					.mouseover(function(e) {

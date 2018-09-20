@@ -3996,9 +3996,9 @@ _extend(KMenu, KWidget, {
 			self.div.append(K('<div class="ke-menu-separator"></div>'));
 			return;
 		}
-		var itemDiv = K('<div class="ke-menu-item" unselectable="on"></div>'),
-			leftDiv = K('<div class="ke-inline-block ke-menu-item-left"></div>'),
-			rightDiv = K('<div class="ke-inline-block ke-menu-item-right"></div>'),
+		var itemDiv = K('<div class="ke-menu-cart" unselectable="on"></div>'),
+			leftDiv = K('<div class="ke-inline-block ke-menu-cart-left"></div>'),
+			rightDiv = K('<div class="ke-inline-block ke-menu-cart-right"></div>'),
 			height = _addUnit(item.height),
 			iconClass = _undef(item.iconClass, '');
 		self.div.append(itemDiv);
@@ -4008,21 +4008,21 @@ _extend(KMenu, KWidget, {
 		}
 		var centerDiv;
 		if (self.centerLineMode) {
-			centerDiv = K('<div class="ke-inline-block ke-menu-item-center"></div>');
+			centerDiv = K('<div class="ke-inline-block ke-menu-cart-center"></div>');
 			if (height) {
 				centerDiv.css('height', height);
 			}
 		}
 		itemDiv.mouseover(function(e) {
-			K(this).addClass('ke-menu-item-on');
+			K(this).addClass('ke-menu-cart-on');
 			if (centerDiv) {
-				centerDiv.addClass('ke-menu-item-center-on');
+				centerDiv.addClass('ke-menu-cart-center-on');
 			}
 		})
 		.mouseout(function(e) {
-			K(this).removeClass('ke-menu-item-on');
+			K(this).removeClass('ke-menu-cart-on');
 			if (centerDiv) {
-				centerDiv.removeClass('ke-menu-item-center-on');
+				centerDiv.removeClass('ke-menu-cart-center-on');
 			}
 		})
 		.click(function(e) {
@@ -4048,7 +4048,7 @@ _extend(KMenu, KWidget, {
 		if (self.options.beforeRemove) {
 			self.options.beforeRemove.call(self);
 		}
-		K('.ke-menu-item', self.div[0]).unbind();
+		K('.ke-menu-cart', self.div[0]).unbind();
 		KMenu.parent.remove.call(self);
 		return self;
 	}
@@ -6766,7 +6766,7 @@ KindEditor.plugin('filemanager', function(K) {
 			var fileList = result.file_list;
 			for (var i = 0, len = fileList.length; i < len; i++) {
 				var data = fileList[i],
-					div = K('<div class="ke-inline-block ke-item"></div>');
+					div = K('<div class="ke-inline-block ke-cart"></div>');
 				bodyDiv.append(div);
 				var photoDiv = K('<div class="ke-inline-block ke-photo"></div>')
 					.mouseover(function(e) {
@@ -7981,13 +7981,13 @@ K.extend(KSWFUpload, {
 	},
 	removeFiles : function() {
 		var self = this;
-		K('.ke-item', self.bodyDiv).each(function() {
+		K('.ke-cart', self.bodyDiv).each(function() {
 			self.removeFile(K(this).attr('data-id'));
 		});
 	},
 	appendFile : function(file) {
 		var self = this;
-		var itemDiv = K('<div class="ke-inline-block ke-item" data-id="' + file.id + '"></div>');
+		var itemDiv = K('<div class="ke-inline-block ke-cart" data-id="' + file.id + '"></div>');
 		self.bodyDiv.append(itemDiv);
 		var photoDiv = K('<div class="ke-inline-block ke-photo"></div>')
 			.mouseover(function(e) {

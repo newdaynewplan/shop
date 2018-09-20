@@ -15,10 +15,10 @@ COMSTATIC.mail_preg = function(mail) {
     }
     return false;
 }
-$("div.item").live("mouseover",function(){
+$("div.cart").live("mouseover",function(){
     $(this).addClass("hover");
 });
-$("div.item").live("mouseleave",function(){
+$("div.cart").live("mouseleave",function(){
 	$(this).removeClass("hover");
 });
 
@@ -1497,7 +1497,7 @@ $.Autocompleter.Cache = function(options) {
 				}				
 				return csub;
 			} else 
-			// if the exact item exists, use it
+			// if the exact cart exists, use it
 			if (data[q]){
 				return data[q];
 			} else
