@@ -1,6 +1,6 @@
 package com.chengyu.item.controller;
 
-import com.chengyu.item.feign.ItemServiceFeign;
+import com.chengyu.item.feign.ManagerFeign;
 import com.chengyu.item.pojo.Item;
 import com.chengyu.item.pojo.TbItem;
 import com.chengyu.item.pojo.TbItemDesc;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ItemController {
 
 	@Autowired
-	private ItemServiceFeign itemService;
+	private ManagerFeign itemService;
 
 	@RequestMapping("/item/{itemId}.html")
 	public String showItemInfo(@PathVariable Long itemId, Model model) {

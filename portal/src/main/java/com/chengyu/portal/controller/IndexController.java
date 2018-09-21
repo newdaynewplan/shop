@@ -1,6 +1,6 @@
 package com.chengyu.portal.controller;
 
-import com.chengyu.portal.feign.ContentServiceFeign;
+import com.chengyu.portal.feign.ManagerFeign;
 import com.chengyu.portal.pojo.TbContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,7 @@ public class IndexController {
 	private Long CONTENT_LUNBO_ID;
 	
 	@Autowired
-	private ContentServiceFeign contentService;
+	private ManagerFeign contentService;
 
 	@RequestMapping("/")
 	public String showIndex(Model model) {

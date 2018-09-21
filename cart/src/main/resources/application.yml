@@ -1,9 +1,9 @@
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/e3mall?useUnicode=true&characterEncoding=gbk&zeroDateTimeBehavior=convertToNull
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/e3mall?useUnicode=true&characterEncoding=gbk&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.jdbc.Driver
   # 默认开启了缓存，修改页面，则刷新的时候得不到修改后的页面，改为false
   thymeleaf:
     cache: false
@@ -23,9 +23,9 @@ spring:
 #  jms:
 #    pub-sub-domain: true
 
-mybatis:
-  type-aliases-package: com.chengyu.common.pojo
-  mapper-locations: classpath:mapper/*.xml
+#mybatis:
+#  type-aliases-package: com.chengyu.common.pojo
+#  mapper-locations: classpath:mapper/*.xml
 
 #pagehelper:
 #  helperDialect: mysql

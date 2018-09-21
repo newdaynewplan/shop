@@ -1,7 +1,7 @@
 package com.chengyu.manager.controller;
 
 import com.chengyu.common.utils.E3Result;
-import com.chengyu.manager.feign.SearchItemServiceFeign;
+import com.chengyu.manager.feign.SearchFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SearchItemController {
 
 	@Autowired
-	private SearchItemServiceFeign searchItemService;
+	private SearchFeign searchItemService;
 
 	@RequestMapping("/index/item/import")
 	@ResponseBody

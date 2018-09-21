@@ -1,10 +1,10 @@
 package com.chengyu.item.feign.fallback;
 
-import com.chengyu.item.feign.ItemServiceFeign;
+import com.chengyu.item.feign.ManagerFeign;
 import com.chengyu.item.pojo.TbItem;
 import com.chengyu.item.pojo.TbItemDesc;
 
-public class ItemServiceFeignFallback  implements ItemServiceFeign {
+public class ManagerFeignFallback implements ManagerFeign {
     @Override
     public TbItem getItemById(Long itemId) {
         return null;

@@ -1,9 +1,9 @@
 package com.chengyu.manager.feign.fallback;
 
 import com.chengyu.common.utils.E3Result;
-import com.chengyu.manager.feign.SearchItemServiceFeign;
+import com.chengyu.manager.feign.SearchFeign;
 
-public class SearchItemServiceFeignFallback implements SearchItemServiceFeign {
+public class SearchFeignFallback implements SearchFeign {
     @Override
     public E3Result importAllItems() {
         System.out.println("失败！");
