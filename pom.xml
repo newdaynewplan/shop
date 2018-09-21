@@ -24,6 +24,7 @@
         <module>search</module>
         <module>cart</module>
         <module>sso</module>
+        <module>order</module>
         <!--<module>fastdfs_client</module>-->
     </modules>
 
