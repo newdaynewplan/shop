@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@EnableFeignClients
 @EnableEurekaClient
 @SpringBootApplication
 @MapperScan("com.chengyu.order.dao")

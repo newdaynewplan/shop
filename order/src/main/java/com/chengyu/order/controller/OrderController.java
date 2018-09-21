@@ -25,7 +25,7 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
-	@RequestMapping("/order/order-cart")
+	@RequestMapping("/order/order-cart.html")
 	public String showOrderCart(HttpServletRequest request) {
 		//取用户id
 //		TbUser user= (TbUser) request.getAttribute("user");
@@ -41,7 +41,7 @@ public class OrderController {
 		return "order-cart";
 	}
 
-	@RequestMapping(value="/order/create", method= RequestMethod.POST)
+	@RequestMapping(value="/order/create.html", method= RequestMethod.POST)
 	public String createOrder(OrderInfo orderInfo, HttpServletRequest request) {
 		//取用户信息
 //		TbUser user = (TbUser) request.getAttribute("user");

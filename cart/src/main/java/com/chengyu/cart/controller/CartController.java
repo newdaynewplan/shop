@@ -11,10 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -133,7 +130,18 @@ public class CartController {
 		//返回逻辑视图
 		return "cart";
 	}
-	
+
+	/**
+	 * 合并购物车
+	 * @param userId
+	 * @param cartList
+	 */
+	@RequestMapping(value = "mergeCart", method = RequestMethod.POST)
+	public E3Result mergeCart(@RequestParam(value = "userId") Long userId, @RequestBody List<TbItem> cartList){
+		E3Result e3Result = cartService.mergeCart(userId, cartList);
+		return e3Result;
+	}
+
 	/**
 	 * 更新购物车商品数量
 	 */
