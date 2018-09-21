@@ -126,7 +126,7 @@ public class CartController {
 			CookieUtils.deleteCookie(request, response, "cart");
 			//从服务端取购物车列表
 			cartList = cartService.getCartList(user.getId());
-			
+			System.out.println("登录转态！");
 		}
 		//把列表传递给页面
 		request.setAttribute("cartList", cartList);

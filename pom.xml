@@ -23,6 +23,7 @@
         <module>portal</module>
         <module>search</module>
         <module>cart</module>
+        <module>sso</module>
         <!--<module>fastdfs_client</module>-->
     </modules>
 

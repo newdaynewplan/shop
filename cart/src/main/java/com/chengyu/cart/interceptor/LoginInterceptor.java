@@ -1,10 +1,14 @@
 package com.chengyu.cart.interceptor;
 
+import com.chengyu.cart.feign.ManagerFeign;
+import com.chengyu.cart.feign.SsoFeign;
 import com.chengyu.cart.pojo.TbUser;
 import com.chengyu.common.utils.CookieUtils;
 import com.chengyu.common.utils.E3Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,10 +22,11 @@ import javax.servlet.http.HttpServletResponse;
  * <p>Company: www.itcast.cn</p> 
  * @version 1.0
  */
+@Component
 public class LoginInterceptor implements HandlerInterceptor {
-	
-//	@Autowired
-//	private TokenService tokenService;
+
+	@Autowired
+	private SsoFeign tokenService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -34,15 +39,18 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		//3.取到token，需要调用sso系统的服务，根据token取用户信息
-//		E3Result e3Result = tokenService.getUserByToken(token);
+		E3Result e3Result = tokenService.getUserByToken(token);
 		//4.没有取到用户信息。登录过期，直接放行。
-//		if (e3Result.getStatus() != 200) {
-//			return true;
-//		}
+		if (e3Result.getStatus() != 200) {
+			return true;
+		}
 		//5.取到用户信息。登录状态。
+		ObjectMapper mapper = new ObjectMapper();
+		Object data = e3Result.getData();
+		TbUser user = mapper.convertValue(data, TbUser.class);
 //		TbUser user = (TbUser) e3Result.getData();
 		//6.把用户信息放到request中。只需要在Controller中判断request中是否包含user信息。放行
-//		request.setAttribute("user", user);
+		request.setAttribute("user", user);
 		return true;
 	}
 	
