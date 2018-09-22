@@ -31,16 +31,16 @@
 <form id="orderForm" class="hide" action="/order/create.html" method="post">
 	<input type="hidden" name="paymentType" value="2"/>
 	<input type="hidden" name="postFee" value="10"/>
-	<div th:each="cart : ${cartList }">
+	<!--<div th:each="cart : ${cartList }">-->
 	<!--<c:forEach items="" var="cart" varStatus="status">-->
 		<!--<c:set var="totalPrice"  value="${ totalPrice + (cart.price * cart.num)}"/>-->
-		<input type="hidden" name="orderItems[${status.index}].itemId" th:value="${cart.id}"/>
-		<input type="hidden" name="orderItems[${status.index}].num" th:value="${cart.num }"/>
-		<input type="hidden" name="orderItems[${status.index}].price" th:value="${cart.price}"/>
-		<input type="hidden" name="orderItems[${status.index}].totalFee" th:value="${cart.price * cart.num}"/>
-		<input type="hidden" name="orderItems[${status.index}].title" th:value="${cart.title}"/>
-		<input type="hidden" name="orderItems[${status.index}].picPath" th:value="${cart.image}"/>
-	</div>
+		<!--<input type="hidden" name="orderItems[${status.index}].itemId" th:value="${cart.id}"/>-->
+		<!--<input type="hidden" name="orderItems[${status.index}].num" th:value="${cart.num }"/>-->
+		<!--<input type="hidden" name="orderItems[${status.index}].price" th:value="${cart.price}"/>-->
+		<!--<input type="hidden" name="orderItems[${status.index}].totalFee" th:value="${cart.price * cart.num}"/>-->
+		<!--<input type="hidden" name="orderItems[${status.index}].title" th:value="${cart.title}"/>-->
+		<!--<input type="hidden" name="orderItems[${status.index}].picPath" th:value="${cart.image}"/>-->
+	<!--</div>-->
 	<!--<input type="hidden" name="payment" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${totalPrice/100 }"/>"/>-->
 	<input type="hidden" name="orderShipping.receiverName" value="入云龙"/>
 	<input type="hidden" name="orderShipping.receiverMobile" value="15800888888"/>

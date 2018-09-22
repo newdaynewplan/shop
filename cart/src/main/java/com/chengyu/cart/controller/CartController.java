@@ -133,6 +133,17 @@ public class CartController {
 	}
 
 	/**
+	 * 获取购物车列表。
+	 * @param userId
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getCartList", method = RequestMethod.POST)
+	public List<TbItem> getCartList(@RequestParam(value = "userId") Long userId){
+		List<TbItem> cartList = cartService.getCartList(userId);
+		return cartList;
+	}
+
+	/**
 	 * 合并购物车
 	 * @param userId
 	 * @param cartList
@@ -200,5 +211,15 @@ public class CartController {
 		CookieUtils.setCookie(request, response, "cart", JsonUtils.objectToJson(cartList), COOKIE_CART_EXPIRE, true);
 		//返回逻辑视图
 		return "redirect:/cart/cart.html";
+	}
+
+	/**
+	 * 	清空购物车商品
+	 */
+	@RequestMapping("/clearCartItem")
+	@ResponseBody
+	public E3Result clearCartItem(@RequestParam(value = "userId") Long userId){
+		E3Result e3Result = cartService.clearCartItem(userId);
+		return e3Result;
 	}
 }
