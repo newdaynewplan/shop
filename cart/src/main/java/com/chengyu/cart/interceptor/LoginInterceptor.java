@@ -1,6 +1,5 @@
 package com.chengyu.cart.interceptor;
 
-import com.chengyu.cart.feign.ManagerFeign;
 import com.chengyu.cart.feign.SsoFeign;
 import com.chengyu.cart.pojo.TbUser;
 import com.chengyu.common.utils.CookieUtils;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
-	@Autowired
-	private SsoFeign tokenService;
+	@Resource
+	private SsoFeign ssoFeign;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -39,7 +39,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		//3.取到token，需要调用sso系统的服务，根据token取用户信息
-		E3Result e3Result = tokenService.getUserByToken(token);
+		E3Result e3Result = ssoFeign.getUserByToken(token);
 		//4.没有取到用户信息。登录过期，直接放行。
 		if (e3Result.getStatus() != 200) {
 			return true;

@@ -18,7 +18,6 @@ import javax.jms.Topic;
 
 @EnableFeignClients
 @EnableDiscoveryClient
-@EnableEurekaClient
 @SpringBootApplication
 @MapperScan("com.chengyu.manager.dao")
 @EnableTransactionManagement  // 开启事务

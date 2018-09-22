@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableFeignClients
-@EnableEurekaClient
+@EnableDiscoveryClient
 @SpringBootApplication
 @MapperScan("com.chengyu.order.dao")
 @EnableTransactionManagement  // 开启事务

@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.chengyu</groupId>
-    <artifactId>item</artifactId>
+    <artifactId>cart</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>item</name>
+    <name>cart</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>

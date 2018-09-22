@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -31,8 +32,8 @@ public class CartController {
 	@Value("${COOKIE_CART_EXPIRE}")
 	private Integer COOKIE_CART_EXPIRE;
 	
-	@Autowired
-	private ManagerFeign itemService;
+	@Resource
+	private ManagerFeign managerFeign;
 	@Autowired
 	private CartService cartService;
 
@@ -66,7 +67,7 @@ public class CartController {
 		//如果不存在
 		if (!flag) {
 			//根据商品id查询商品信息。得到一个TbItem对象
-			TbItem tbItem = itemService.getItemById(itemId);
+			TbItem tbItem = managerFeign.getItemById(itemId);
 			//设置商品数量
 			tbItem.setNum(num);
 			//取一张图片
@@ -136,7 +137,8 @@ public class CartController {
 	 * @param userId
 	 * @param cartList
 	 */
-	@RequestMapping(value = "mergeCart", method = RequestMethod.POST)
+	@ResponseBody
+	@RequestMapping(value = "/mergeCart", method = RequestMethod.POST)
 	public E3Result mergeCart(@RequestParam(value = "userId") Long userId, @RequestBody List<TbItem> cartList){
 		E3Result e3Result = cartService.mergeCart(userId, cartList);
 		return e3Result;
