@@ -22,6 +22,5 @@ public interface CartFeign {
      * 	清空购物车商品
      */
     @RequestMapping("/clearCartItem")
-    @ResponseBody
     public E3Result clearCartItem(@RequestParam(value = "userId") Long userId);
 }

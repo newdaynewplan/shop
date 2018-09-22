@@ -11,9 +11,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 购物车处理服务
@@ -22,6 +25,7 @@ import java.util.List;
  * <p>Company: www.itcast.cn</p> 
  * @version 1.0
  */
+@Transactional
 @Service
 public class CartServiceImpl implements CartService {
 
@@ -117,7 +121,10 @@ public class CartServiceImpl implements CartService {
 	public E3Result clearCartItem(long userId) {
 		//删除购物车信息
 		HashOperations<String, Object, Object> hash = jedisClient.opsForHash();
-		hash.delete(REDIS_CART_PRE + ":" + userId);
+		Set<Object> keys = hash.keys(REDIS_CART_PRE + ":" + userId);
+		for (Object key : keys) {
+			hash.delete(REDIS_CART_PRE + ":" + userId, key);
+		}
 		return E3Result.ok();
 	}
 	

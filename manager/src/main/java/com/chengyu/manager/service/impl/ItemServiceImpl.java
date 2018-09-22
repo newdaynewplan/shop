@@ -22,6 +22,7 @@ import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.jms.Destination;
@@ -41,6 +42,7 @@ import java.util.concurrent.TimeUnit;
  * <p>Company: www.itcast.cn</p> 
  * @version 1.0
  */
+@Transactional
 @Service
 public class ItemServiceImpl implements ItemService {
 

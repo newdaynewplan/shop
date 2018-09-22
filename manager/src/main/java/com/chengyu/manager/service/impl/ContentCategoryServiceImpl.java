@@ -8,6 +8,7 @@ import com.chengyu.manager.pojo.TbContentCategoryExample;
 import com.chengyu.manager.service.ContentCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,7 @@ import java.util.List;
  * <p>Company: www.itcast.cn</p> 
  * @version 1.0
  */
+@Transactional
 @Service
 public class ContentCategoryServiceImpl implements ContentCategoryService {
 
