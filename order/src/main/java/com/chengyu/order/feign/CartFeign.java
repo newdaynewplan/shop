@@ -1,6 +1,7 @@
 package com.chengyu.order.feign;
 
 import com.chengyu.common.utils.E3Result;
+import com.chengyu.order.config.FeignConfig;
 import com.chengyu.order.feign.fallback.CartFeignFallback;
 import com.chengyu.order.feign.fallback.SsoFeignFallback;
 import com.chengyu.order.pojo.TbItem;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value = "cart",fallback = CartFeignFallback.class )
+@FeignClient(value = "cart",configuration = FeignConfig.class,fallback = CartFeignFallback.class )
 public interface CartFeign {
 
     @RequestMapping(value = "/mergeCart", method = RequestMethod.POST)

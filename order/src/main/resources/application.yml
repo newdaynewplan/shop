@@ -35,6 +35,10 @@ server:
   port: 8088
 debug: true
 
+##开启feign开关
+feign:
+  hystrix:
+    enabled: true
 ##请求处理的超时时间
 #ribbon:
 #  ReadTimeout: 14000

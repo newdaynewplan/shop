@@ -70,11 +70,11 @@ public class OrderController {
 		orderInfo.setOrderItems(orderItems);
 		//调用服务生成订单
 		E3Result e3Result = orderService.createOrder(orderInfo);
-		//如果订单生成成功，需要删除购物车
-		if (e3Result.getStatus() == 200) {
+		//如果订单生成成功，需要删除购物车，放到生成订单里面。
+//		if (e3Result.getStatus() == 200) {
 			//清空购物车
-			cartService.clearCartItem(user.getId());
-		}
+//			cartService.clearCartItem(user.getId());
+//		}
 		//把订单号传递给页面
 		request.setAttribute("orderId", e3Result.getData());
 		request.setAttribute("payment", orderInfo.getPayment());

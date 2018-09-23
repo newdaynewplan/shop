@@ -31,6 +31,11 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
 
+##开启feign开关
+feign:
+  hystrix:
+    enabled: true
+
 server:
   port: 8082
 

@@ -1,5 +1,6 @@
 package com.chengyu.sso.feign;
 
+import com.chengyu.sso.config.FeignConfig;
 import com.chengyu.sso.feign.fallback.ManagerFeignFallback;
 import com.chengyu.sso.pojo.TbUser;
 import com.chengyu.sso.pojo.TbUserExample;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-@FeignClient(value = "manager",fallback = ManagerFeignFallback.class )
+@FeignClient(value = "manager",configuration = FeignConfig.class,fallback = ManagerFeignFallback.class )
 public interface ManagerFeign {
 
     @ResponseBody

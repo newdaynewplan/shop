@@ -2,7 +2,9 @@ package com.chengyu.manager.feign.fallback;
 
 import com.chengyu.common.utils.E3Result;
 import com.chengyu.manager.feign.SearchFeign;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SearchFeignFallback implements SearchFeign {
     @Override
     public E3Result importAllItems() {

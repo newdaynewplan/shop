@@ -125,6 +125,8 @@ public class CartServiceImpl implements CartService {
 		for (Object key : keys) {
 			hash.delete(REDIS_CART_PRE + ":" + userId, key);
 		}
+		// 测试远程调用失败。
+//		hash.delete(REDIS_CART_PRE + ":" + userId);
 		return E3Result.ok();
 	}
 	

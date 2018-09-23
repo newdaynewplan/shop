@@ -42,5 +42,10 @@ eureka:
 server:
   port: 8085
 
+##开启feign开关
+feign:
+  hystrix:
+    enabled: true
+
 debug:
   true

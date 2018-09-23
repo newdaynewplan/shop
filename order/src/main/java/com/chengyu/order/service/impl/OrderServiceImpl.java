@@ -4,6 +4,7 @@ import com.chengyu.common.utils.E3Result;
 import com.chengyu.order.dao.TbOrderItemMapper;
 import com.chengyu.order.dao.TbOrderMapper;
 import com.chengyu.order.dao.TbOrderShippingMapper;
+import com.chengyu.order.feign.CartFeign;
 import com.chengyu.order.pojo.OrderInfo;
 import com.chengyu.order.pojo.TbOrderItem;
 import com.chengyu.order.pojo.TbOrderShipping;
@@ -29,7 +30,8 @@ import java.util.List;
 @Transactional
 @Service
 public class OrderServiceImpl implements OrderService {
-
+	@Autowired
+	private CartFeign cartService;
 	@Autowired
 	private TbOrderMapper orderMapper;
 	@Autowired
@@ -80,6 +82,9 @@ public class OrderServiceImpl implements OrderService {
 		orderShipping.setUpdated(new Date());
 		orderShippingMapper.insert(orderShipping);
 		//返回E3Result，包含订单号
+		//如果订单生成成功，需要删除购物车
+		//清空购物车
+		cartService.clearCartItem(orderInfo.getUserId());
 		return E3Result.ok(orderId);
 	}
 
