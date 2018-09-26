@@ -39,6 +39,15 @@ debug: true
 feign:
   hystrix:
     enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
 ##请求处理的超时时间
 #ribbon:
 #  ReadTimeout: 14000

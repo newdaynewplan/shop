@@ -26,6 +26,7 @@
         <module>sso</module>
         <module>order</module>
         <module>item</module>
+        <module>turbine</module>
         <!--<module>fastdfs_client</module>-->
     </modules>
 
