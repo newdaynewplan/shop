@@ -1,10 +1,11 @@
 package com.chengyu.search.controller;
 
-import com.chengyu.common.pojo.SearchItem;
 import com.chengyu.common.pojo.SearchResult;
 import com.chengyu.common.utils.E3Result;
 import com.chengyu.search.service.SearchItemService;
 import com.chengyu.search.service.SearchService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class SearchController {
-	
+
+	private static Logger logger = LoggerFactory.getLogger(SearchController.class);
+
 	@Autowired
 	private SearchService searchService;
 
@@ -54,6 +57,7 @@ public class SearchController {
 	@ResponseBody
 	public E3Result importAllItems() {
 		E3Result e3Result = searchItemService.importAllItems();
+		logger.info("导入索引成功！");
 		return e3Result;
 	}
 }

@@ -8,6 +8,8 @@ import com.chengyu.common.utils.CookieUtils;
 import com.chengyu.common.utils.E3Result;
 import com.chengyu.common.utils.JsonUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,9 @@ import java.util.List;
  */
 @Controller
 public class CartController {
-	
+
+	private static Logger logger = LoggerFactory.getLogger(CartController.class);
+
 	@Value("${COOKIE_CART_EXPIRE}")
 	private Integer COOKIE_CART_EXPIRE;
 	
@@ -80,6 +84,7 @@ public class CartController {
 		}
 		//写入cookie
 		CookieUtils.setCookie(request, response, "cart", JsonUtils.objectToJson(cartList), COOKIE_CART_EXPIRE, true);
+		logger.info("添加购物车成功！");
 		//返回添加成功页面
 		return "cartSuccess";
 	}

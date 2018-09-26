@@ -6,7 +6,7 @@ import com.chengyu.manager.dao.TbContentMapper;
 import com.chengyu.manager.pojo.TbContent;
 import com.chengyu.manager.pojo.TbContentExample;
 import com.chengyu.manager.service.ContentService;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.HashOperations;

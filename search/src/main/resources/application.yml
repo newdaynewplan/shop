@@ -15,7 +15,7 @@ spring:
     host: 192.168.25.133
   data:
     solr:
-      host: http://192.168.25.133:8080/solr/collection1
+      host: http://192.168.25.133:8080/solr
   activemq:
     broker-url: tcp://192.168.25.133:61616
 #    user: admin
@@ -40,9 +40,9 @@ eureka:
       defaultZone: http://localhost:8080/eureka/
 
 ##开启feign开关
-feign:
-  hystrix:
-    enabled: true
+#feign:
+#  hystrix:
+#    enabled: true
 
 server:
   port: 8083
